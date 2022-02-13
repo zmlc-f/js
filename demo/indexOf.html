@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var str = "abcdefgef"
+    console.log(indexOf(str, 'ef', 1));
+    console.log(lastIndexOf(str, 'ef', 6));
+    console.log(str.lastIndexOf("ef", 6));
+
+    function indexOf(str, searchStr, fromIndex) {
+      if (fromIndex < 0 || !fromIndex) {
+        fromIndex = 0;
+      }
+      if (fromIndex > str.length) {
+        return -1;
+      }
+      // for (var i = fromIndex; i < str.length; i++) {
+      //   if (str.charAt(i) === searchStr) return i;
+      // }
+      var i = fromIndex,
+        j = 0;
+      var index = -1;
+      while (i < str.length) {
+        if (str.charAt(i) === searchStr.charAt(j)) {
+          if (j === 0) {
+            index = i;
+          }
+          j++;
+        } else {
+          j = 0;
+        }
+        i++;
+        if (j === searchStr.length) {
+          return index;
+        }
+      }
+      return -1;
+    }
+
+    function lastIndexOf(str, searchStr, fromIndex) {
+      if (fromIndex < 0) {
+        return -1
+      }
+      if (fromIndex > str.length - 1 || fromIndex === undefined) {
+        fromIndex = str.length - 1;
+      }
+      var end = searchStr.length - 1;
+      var i = fromIndex,
+        j = end;
+      while (i >= 0) {
+        if (str.charAt(i) === searchStr.charAt(j)) {
+          j--;
+        } else {
+          j = end;
+        }
+        i--;
+        if (j === 0) {
+          return i;
+        }
+      }
+      return -1;
+    }
+  </script>
+</body>
+
+</html>
